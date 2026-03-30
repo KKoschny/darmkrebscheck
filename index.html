@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Darmkrebs-Risikocheck – Klinikum Neumarkt i.d.OPf.</title>
+  <meta name="description" content="Ermitteln Sie Ihr persönliches Darmkrebsrisiko in 2 Minuten. Kostenlos, anonym, evidenzbasiert.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300..700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── Design Tokens ──────────────────────────────────── */
+    :root, [data-theme="light"] {
+      --color-bg:             #f4f7f4;
+      --color-surface:        #ffffff;
+      --color-surface-2:      #f8faf8;
+      --color-surface-offset: #edf2ed;
+      --color-border:         #d0dbd0;
+      --color-divider:        #dce8dc;
+
+      --color-text:           #1a2a1a;
+      --color-text-muted:     #5a6e5a;
+      --color-text-faint:     #9aad9a;
+      --color-text-inverse:   #ffffff;
+
+      --color-primary:        #1a6b3c;
+      --color-primary-hover:  #145430;
+      --color-primary-light:  #e8f4ee;
+
+      /* Ampel-Farben */
+      --color-green:          #1a7a3c;
+      --color-green-bg:       #e6f5ec;
+      --color-green-border:   #a8d5bb;
+
+      --color-yellow:         #b5720a;
+      --color-yellow-bg:      #fef9e8;
+      --color-yellow-border:  #f0d080;
+
+      --color-red:            #c0392b;
+      --color-red-bg:         #fdf0ee;
+      --color-red-border:     #f0a898;
+
+      --color-orange:         #d4640c;
+      --color-orange-bg:      #fef4ec;
+      --color-orange-border:  #f0c090;
+
+      --radius-sm: 0.375rem;
+      --radius-md: 0.625rem;
+      --radius-lg: 1rem;
+      --radius-xl: 1.5rem;
+
+      --shadow-sm: 0 1px 3px rgba(30,60,30,0.07);
+      --shadow-md: 0 4px 16px rgba(30,60,30,0.10);
+      --shadow-lg: 0 12px 40px rgba(30,60,30,0.14);
+
+      --transition: 200ms cubic-bezier(0.16, 1, 0.3, 1);
+
+      --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+      --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+      --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+      --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+      --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+      --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
+
+      --space-1: 0.25rem;  --space-2: 0.5rem;  --space-3: 0.75rem;
+      --space-4: 1rem;     --space-5: 1.25rem; --space-6: 1.5rem;
+      --space-8: 2rem;     --space-10: 2.5rem; --space-12: 3rem;
+      --space-16: 4rem;    --space-20: 5rem;
+
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
+
+      --content-narrow: 680px;
+    }
+
+    [data-theme="dark"] {
+      --color-bg:             #111a11;
+      --color-surface:        #172217;
+      --color-surface-2:      #1d2a1d;
+      --color-surface-offset: #1a2a1a;
+      --color-border:         #2e422e;
+      --color-divider:        #243424;
+      --color-text:           #d4e8d4;
+      --color-text-muted:     #7a9e7a;
+      --color-text-faint:     #4a6a4a;
+      --color-text-inverse:   #111a11;
+      --color-primary:        #4caa6e;
+      --color-primary-hover:  #3d8e5c;
+      --color-primary-light:  #1a3a24;
+
+      --color-green:          #4caa6e;
+      --color-green-bg:       #152a1e;
+      --color-green-border:   #2a5a38;
+      --color-yellow:         #e8a030;
+      --color-yellow-bg:      #2a2010;
+      --color-yellow-border:  #5a4010;
+      --color-red:            #e85040;
+      --color-red-bg:         #2a1510;
+      --color-red-border:     #5a2010;
+      --color-orange:         #f08040;
+      --color-orange-bg:      #2a1a08;
+      --color-orange-border:  #5a3010;
+
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.5);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]) {
+        --color-bg: #111a11; --color-surface: #172217;
+        --color-surface-2: #1d2a1d; --color-surface-offset: #1a2a1a;
+        --color-border: #2e422e; --color-divider: #243424;
+        --color-text: #d4e8d4; --color-text-muted: #7a9e7a;
+        --color-text-faint: #4a6a4a; --color-text-inverse: #111a11;
+        --color-primary: #4caa6e; --color-primary-hover: #3d8e5c;
+        --color-primary-light: #1a3a24;
+        --color-green: #4caa6e; --color-green-bg: #152a1e; --color-green-border: #2a5a38;
+        --color-yellow: #e8a030; --color-yellow-bg: #2a2010; --color-yellow-border: #5a4010;
+        --color-red: #e85040; --color-red-bg: #2a1510; --color-red-border: #5a2010;
+        --color-orange: #f08040; --color-orange-bg: #2a1a08; --color-orange-border: #5a3010;
+      }
+    }
+
+    /* ─── Reset & Base ───────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+    body {
+      min-height: 100dvh;
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--color-text);
+      background-color: var(--color-bg);
+      line-height: 1.65;
+    }
+    img, svg { display: block; max-width: 100%; }
+    button { cursor: pointer; background: none; border: none; font: inherit; color: inherit; }
+    :focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: var(--radius-sm); }
+    p { max-width: 66ch; }
+    h1, h2, h3 { text-wrap: balance; line-height: 1.2; }
+
+    /* ─── Layout ─────────────────────────────────────────── */
+    .page-wrapper {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── Header ─────────────────────────────────────────── */
+    header {
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-4) var(--space-6);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+    .header-inner {
+      max-width: var(--content-narrow);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+    .logo-svg { flex-shrink: 0; }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    .logo-name {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+    .logo-sub {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      font-weight: 400;
+    }
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-md);
+      color: var(--color-text-muted);
+      transition: background var(--transition), color var(--transition);
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover {
+      background: var(--color-surface-offset);
+      color: var(--color-text);
+    }
+
+    /* ─── Main Content ───────────────────────────────────── */
+    main {
+      flex: 1;
+      padding: var(--space-10) var(--space-6) var(--space-16);
+    }
+    .content-wrap {
+      max-width: var(--content-narrow);
+      margin: 0 auto;
+    }
+
+    /* ─── Hero / Intro ───────────────────────────────────── */
+    .intro-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-10) var(--space-8);
+      margin-bottom: var(--space-8);
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+    .intro-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #1a6b3c, #4caa6e, #a8d5bb);
+    }
+    .intro-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full, 9999px);
+      margin-bottom: var(--space-5);
+    }
+    .intro-title {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      color: var(--color-text);
+      margin-bottom: var(--space-4);
+    }
+    .intro-title em {
+      font-style: italic;
+      color: var(--color-primary);
+    }
+    .intro-lead {
+      font-size: var(--text-base);
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-6);
+      line-height: 1.7;
+    }
+    .intro-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+    .badge {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-xs);
+      font-weight: 500;
+      color: var(--color-text-muted);
+      background: var(--color-surface-offset);
+      border: 1px solid var(--color-border);
+      padding: var(--space-1) var(--space-3);
+      border-radius: 99px;
+    }
+    .badge svg { color: var(--color-primary); flex-shrink: 0; }
+
+    /* ─── Progress Bar ───────────────────────────────────── */
+    .progress-section {
+      margin-bottom: var(--space-6);
+    }
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-2);
+    }
+    .progress-label {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--color-text-muted);
+    }
+    .progress-count {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+    .progress-bar-track {
+      height: 6px;
+      background: var(--color-surface-offset);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--color-primary), #4caa6e);
+      border-radius: 99px;
+      transition: width 500ms cubic-bezier(0.16, 1, 0.3, 1);
+      width: 0%;
+    }
+
+    /* ─── Section Header ─────────────────────────────────── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-5);
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--color-divider);
+    }
+    .section-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.25rem;
+    }
+    .section-icon.blue { background: #e8f0f8; }
+    .section-icon.orange { background: var(--color-orange-bg); }
+    .section-icon.purple { background: #f0e8f8; }
+    .section-icon.green { background: var(--color-green-bg); }
+    .section-icon.red { background: var(--color-red-bg); }
+    .section-icon.teal { background: var(--color-primary-light); }
+    .section-title {
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+    .section-subtitle {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      margin-top: 1px;
+    }
+
+    /* ─── Question Card ──────────────────────────────────── */
+    .question-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      margin-bottom: var(--space-4);
+      box-shadow: var(--shadow-sm);
+      transition: border-color var(--transition);
+    }
+    .question-card.has-answer {
+      border-color: var(--color-primary);
+    }
+    .question-text {
+      font-size: var(--text-base);
+      font-weight: 500;
+      color: var(--color-text);
+      margin-bottom: var(--space-4);
+      line-height: 1.5;
+    }
+    .question-hint {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-4);
+      padding: var(--space-2) var(--space-3);
+      background: var(--color-surface-2);
+      border-radius: var(--radius-sm);
+      border-left: 3px solid var(--color-primary);
+    }
+
+    /* ─── Radio Options ──────────────────────────────────── */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      list-style: none;
+    }
+    .option-label {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition);
+      user-select: none;
+      position: relative;
+    }
+    .option-label:hover {
+      border-color: var(--color-primary);
+      background: var(--color-primary-light);
+    }
+    .option-label input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .option-radio-visual {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--color-border);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+    }
+    .option-radio-visual::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      transform: scale(0);
+      transition: transform var(--transition);
+    }
+    .option-label input:checked ~ .option-radio-visual {
+      border-color: var(--color-primary);
+      background: var(--color-primary-light);
+    }
+    .option-label input:checked ~ .option-radio-visual::after {
+      transform: scale(1);
+    }
+    .option-label:has(input:checked) {
+      border-color: var(--color-primary);
+      background: var(--color-primary-light);
+    }
+    .option-text {
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      flex: 1;
+      line-height: 1.4;
+    }
+    .option-label:has(input:checked) .option-text {
+      font-weight: 500;
+      color: var(--color-primary);
+    }
+
+    /* ─── Warning / Alert Option ─────────────────────────── */
+    .option-label.alert-option:has(input:checked) {
+      border-color: var(--color-red);
+      background: var(--color-red-bg);
+    }
+    .option-label.alert-option:has(input:checked) .option-text {
+      color: var(--color-red);
+    }
+    .option-label.alert-option:has(input:checked) .option-radio-visual {
+      border-color: var(--color-red);
+    }
+    .option-label.alert-option:has(input:checked) .option-radio-visual::after {
+      background: var(--color-red);
+    }
+    .option-label.alert-option:hover {
+      border-color: var(--color-red);
+      background: var(--color-red-bg);
+    }
+
+    /* ─── Section Group ──────────────────────────────────── */
+    .section-group {
+      margin-bottom: var(--space-10);
+    }
+
+    /* ─── Navigation Buttons ─────────────────────────────── */
+    .nav-row {
+      display: flex;
+      justify-content: flex-end;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-6);
+      background: var(--color-primary);
+      color: white;
+      font-weight: 600;
+      font-size: var(--text-sm);
+      border-radius: var(--radius-md);
+      border: 2px solid var(--color-primary);
+      transition: all var(--transition);
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      background: var(--color-primary-hover);
+      border-color: var(--color-primary-hover);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-5);
+      background: transparent;
+      color: var(--color-text-muted);
+      font-weight: 500;
+      font-size: var(--text-sm);
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--color-border);
+      transition: all var(--transition);
+    }
+    .btn-secondary:hover {
+      background: var(--color-surface-offset);
+      color: var(--color-text);
+      border-color: var(--color-text-muted);
+    }
+
+    /* ─── Step Indicator ─────────────────────────────────── */
+    .steps-nav {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-8);
+      overflow-x: auto;
+      padding-bottom: var(--space-1);
+    }
+    .step-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      flex-shrink: 0;
+      border: 2px solid var(--color-border);
+      color: var(--color-text-muted);
+      background: var(--color-surface);
+      transition: all var(--transition);
+    }
+    .step-dot.active {
+      border-color: var(--color-primary);
+      background: var(--color-primary);
+      color: white;
+    }
+    .step-dot.done {
+      border-color: var(--color-primary);
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+    }
+    .step-line {
+      flex: 1;
+      height: 2px;
+      background: var(--color-border);
+      border-radius: 99px;
+      min-width: 20px;
+      transition: background var(--transition);
+    }
+    .step-line.done { background: var(--color-primary); }
+
+    /* ─── Pages / Screens ────────────────────────────────── */
+    .screen { display: none; }
+    .screen.active { display: block; }
+
+    /* ─── Result Screen ──────────────────────────────────── */
+    .result-card {
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+      margin-bottom: var(--space-6);
+      border: 2px solid;
+      box-shadow: var(--shadow-lg);
+    }
+    .result-card.green {
+      background: var(--color-green-bg);
+      border-color: var(--color-green-border);
+    }
+    .result-card.yellow {
+      background: var(--color-yellow-bg);
+      border-color: var(--color-yellow-border);
+    }
+    .result-card.orange {
+      background: var(--color-orange-bg);
+      border-color: var(--color-orange-border);
+    }
+    .result-card.red {
+      background: var(--color-red-bg);
+      border-color: var(--color-red-border);
+    }
+
+    .result-icon-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-5);
+      margin-bottom: var(--space-5);
+      flex-wrap: wrap;
+    }
+    .result-ampel {
+      font-size: 4rem;
+      line-height: 1;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.12));
+    }
+    .result-category {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+    .result-card.green .result-category { color: var(--color-green); }
+    .result-card.yellow .result-category { color: var(--color-yellow); }
+    .result-card.orange .result-category { color: var(--color-orange); }
+    .result-card.red .result-category { color: var(--color-red); }
+
+    .result-score-line {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      margin-top: var(--space-1);
+    }
+
+    .result-description {
+      font-size: var(--text-base);
+      color: var(--color-text);
+      line-height: 1.7;
+      margin-bottom: var(--space-5);
+    }
+
+    /* ─── Score Bar ──────────────────────────────────────── */
+    .score-bar-section {
+      margin-bottom: var(--space-4);
+    }
+    .score-bar-track {
+      height: 12px;
+      border-radius: 99px;
+      background: var(--color-surface-offset);
+      overflow: hidden;
+      position: relative;
+      margin-bottom: var(--space-2);
+    }
+    .score-bar-fill {
+      height: 100%;
+      border-radius: 99px;
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      background: linear-gradient(90deg, var(--color-green), var(--color-yellow), var(--color-orange), var(--color-red));
+    }
+    .score-bar-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+    }
+
+    /* ─── Recommendation Box ─────────────────────────────── */
+    .recommendation-box {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      margin-bottom: var(--space-4);
+    }
+    .recommendation-title {
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: var(--space-4);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    .recommendation-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .recommendation-list li {
+      display: flex;
+      gap: var(--space-3);
+      align-items: flex-start;
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      line-height: 1.5;
+      max-width: none;
+    }
+    .rec-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+    .rec-icon.action { background: var(--color-primary-light); color: var(--color-primary); }
+    .rec-icon.alert { background: var(--color-red-bg); color: var(--color-red); }
+    .rec-icon.info { background: var(--color-surface-offset); color: var(--color-text-muted); }
+
+    /* ─── Alarm Banner ───────────────────────────────────── */
+    .alarm-banner {
+      background: var(--color-red-bg);
+      border: 2px solid var(--color-red-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5) var(--space-6);
+      margin-bottom: var(--space-4);
+      display: none;
+    }
+    .alarm-banner.visible { display: flex; gap: var(--space-4); align-items: flex-start; }
+    .alarm-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .alarm-text strong {
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--color-red);
+      display: block;
+      margin-bottom: var(--space-1);
+    }
+    .alarm-text p {
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      line-height: 1.5;
+    }
+
+    /* ─── Disclaimer ─────────────────────────────────────── */
+    .disclaimer {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      border-top: 1px solid var(--color-divider);
+      padding-top: var(--space-4);
+      margin-top: var(--space-4);
+      line-height: 1.6;
+    }
+
+    /* ─── Result Actions ─────────────────────────────────── */
+    .result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
+    .btn-restart {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-5);
+      background: transparent;
+      color: var(--color-primary);
+      font-weight: 600;
+      font-size: var(--text-sm);
+      border-radius: var(--radius-md);
+      border: 2px solid var(--color-primary);
+      transition: all var(--transition);
+    }
+    .btn-restart:hover {
+      background: var(--color-primary-light);
+    }
+
+    /* ─── Footer ─────────────────────────────────────────── */
+    footer {
+      background: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+      padding: var(--space-5) var(--space-6);
+      text-align: center;
+    }
+    .footer-inner {
+      max-width: var(--content-narrow);
+      margin: 0 auto;
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+    .footer-inner a { color: var(--color-primary); text-decoration: none; }
+    .footer-inner a:hover { text-decoration: underline; }
+
+    /* ─── Responsive ─────────────────────────────────────── */
+    @media (max-width: 600px) {
+      main { padding: var(--space-6) var(--space-4) var(--space-12); }
+      .intro-card { padding: var(--space-6) var(--space-5); }
+      .question-card { padding: var(--space-5) var(--space-4); }
+      .result-card { padding: var(--space-6) var(--space-5); }
+      .recommendation-box { padding: var(--space-5) var(--space-4); }
+    }
+
+    /* ─── Animation ──────────────────────────────────────── */
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .screen.active { animation: fadeSlideIn 350ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- ─── Header ─────────────────────────────────────────── -->
+  <header>
+    <div class="header-inner">
+      <div class="logo-area">
+        <!-- Logo SVG: Stilisierter Darm als Klinikum-Emblem -->
+        <svg class="logo-svg" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-label="Klinikum Neumarkt Darmkrebs-Risikocheck" xmlns="http://www.w3.org/2000/svg">
+          <rect width="40" height="40" rx="10" fill="var(--color-primary)"/>
+          <circle cx="20" cy="20" r="10" stroke="white" stroke-width="2.5" fill="none"/>
+          <path d="M16 16 C16 13 20 13 20 16 C20 19 24 19 24 22 C24 25 20 25 20 22 C20 19 16 19 16 22" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+        </svg>
+        <div class="logo-text">
+          <span class="logo-name">Darmkrebs-Risikocheck</span>
+          <span class="logo-sub">Klinikum Neumarkt i.d.OPf. · Gastroenterologie</span>
+        </div>
+      </div>
+      <button class="theme-toggle" data-theme-toggle aria-label="Dark Mode umschalten">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ─── Main ───────────────────────────────────────────── -->
+  <main>
+    <div class="content-wrap">
+
+      <!-- SCREEN 0: Intro -->
+      <div class="screen active" id="screen-intro">
+        <div class="intro-card">
+          <div class="intro-eyebrow">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="6"/></svg>
+            Kostenlos · Anonym · 2 Minuten
+          </div>
+          <h1 class="intro-title">Wie hoch ist Ihr persönliches <em>Darmkrebsrisiko?</em></h1>
+          <p class="intro-lead">
+            Darmkrebs ist die zweithäufigste Krebstodesursache in Deutschland – und oft gut heilbar, wenn er früh entdeckt wird. Dieser evidenzbasierte Fragebogen erfasst Ihre persönlichen Risikofaktoren und gibt Ihnen eine Einschätzung mit klarer Handlungsempfehlung.
+          </p>
+          <div class="intro-badges">
+            <span class="badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Keine Datenspeicherung
+            </span>
+            <span class="badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              ca. 2 Minuten
+            </span>
+            <span class="badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              Wissenschaftlich fundiert
+            </span>
+          </div>
+        </div>
+        <div class="nav-row">
+          <button class="btn-primary" onclick="startSurvey()">
+            Fragebogen starten
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- SCREEN 1: Abschnitt 1 – Demografie & Vorsorge -->
+      <div class="screen" id="screen-1">
+        <div class="steps-nav" id="steps-nav-1"></div>
+        <div class="progress-section">
+          <div class="progress-meta">
+            <span class="progress-label">Fortschritt</span>
+            <span class="progress-count" id="prog-count-1">Abschnitt 1 von 5</span>
+          </div>
+          <div class="progress-bar-track"><div class="progress-bar-fill" id="prog-bar-1" style="width:5%"></div></div>
+        </div>
+
+        <div class="section-group">
+          <div class="section-header">
+            <div class="section-icon blue">👤</div>
+            <div>
+              <div class="section-title">Persönliche Angaben</div>
+              <div class="section-subtitle">Alter und Geschlecht beeinflussen das CRC-Risiko wesentlich</div>
+            </div>
+          </div>
+
+          <div class="question-card" id="qc-q1">
+            <div class="question-text">In welcher Altersgruppe befinden Sie sich?</div>
+            <ul class="options-list">
+              <li><label class="option-label"><input type="radio" name="q1" value="0" onchange="onAnswer('q1',this)"><div class="option-radio-visual"></div><span class="option-text">Unter 30 Jahre</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q1" value="1" onchange="onAnswer('q1',this)"><div class="option-radio-visual"></div><span class="option-text">30 – 39 Jahre</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q1" value="2" onchange="onAnswer('q1',this)"><div class="option-radio-visual"></div><span class="option-text">40 – 49 Jahre</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q1" value="3" onchange="onAnswer('q1',this)"><div class="option-radio-visual"></div><span class="option-text">50 – 59 Jahre</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q1" value="4" onchange="onAnswer('q1',this)"><div class="option-radio-visual"></div><span class="option-text">60 – 69 Jahre</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q1" value="4" onchange="onAnswer('q1',this)"><div class="option-radio-visual"></div><span class="option-text">70 Jahre oder älter</span></label></li>
+            </ul>
+          </div>
+
+          <div class="question-card" id="qc-q2">
+            <div class="question-text">Welches Geschlecht haben Sie?</div>
+            <ul class="options-list">
+              <li><label class="option-label"><input type="radio" name="q2" value="0" onchange="onAnswer('q2',this)"><div class="option-radio-visual"></div><span class="option-text">Weiblich</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q2" value="1" onchange="onAnswer('q2',this)"><div class="option-radio-visual"></div><span class="option-text">Männlich</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q2" value="0" onchange="onAnswer('q2',this)"><div class="option-radio-visual"></div><span class="option-text">Divers / keine Angabe</span></label></li>
+            </ul>
+          </div>
+
+          <div class="question-card" id="qc-q3">
+            <div class="question-text">Haben Sie in den letzten 10 Jahren eine Darmspiegelung (Koloskopie) durchgeführt?</div>
+            <ul class="options-list">
+              <li><label class="option-label"><input type="radio" name="q3" value="-4" onchange="onAnswer('q3',this)"><div class="option-radio-visual"></div><span class="option-text">Ja, ohne auffälligen Befund</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q3" value="0" onchange="onAnswer('q3',this)"><div class="option-radio-visual"></div><span class="option-text">Ja, es wurden Polypen entfernt (kein Karzinom)</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q3" value="0" onchange="onAnswer('q3',this)"><div class="option-radio-visual"></div><span class="option-text">Nein, noch nie</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q3" value="0" onchange="onAnswer('q3',this)"><div class="option-radio-visual"></div><span class="option-text">Nein, liegt länger als 10 Jahre zurück</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q3" value="0" onchange="onAnswer('q3',this)"><div class="option-radio-visual"></div><span class="option-text">Ich weiß es nicht</span></label></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="nav-row">
+          <button class="btn-secondary" onclick="goTo('screen-intro')">← Zurück</button>
+          <button class="btn-primary" onclick="goTo('screen-2')">
+            Weiter
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- SCREEN 2: Familienanamnese & Genetik -->
+      <div class="screen" id="screen-2">
+        <div class="steps-nav" id="steps-nav-2"></div>
+        <div class="progress-section">
+          <div class="progress-meta">
+            <span class="progress-label">Fortschritt</span>
+            <span class="progress-count">Abschnitt 2 von 5</span>
+          </div>
+          <div class="progress-bar-track"><div class="progress-bar-fill" style="width:22%"></div></div>
+        </div>
+
+        <div class="section-group">
+          <div class="section-header">
+            <div class="section-icon red">🧬</div>
+            <div>
+              <div class="section-title">Familienanamnese & genetisches Risiko</div>
+              <div class="section-subtitle">Stärkster Einzelrisikofaktor – erhöht das Risiko 2- bis 6-fach</div>
+            </div>
+          </div>
+
+          <div class="question-card" id="qc-q4">
+            <div class="question-text">Hatte ein Elternteil, ein Geschwister oder ein Kind (Verwandte 1. Grades) Darmkrebs?</div>
+            <ul class="options-list">
+              <li><label class="option-label"><input type="radio" name="q4" value="0" onchange="onAnswer('q4',this)"><div class="option-radio-visual"></div><span class="option-text">Nein</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q4" value="3" onchange="onAnswer('q4',this)"><div class="option-radio-visual"></div><span class="option-text">Ja, Diagnose nach dem 60. Lebensjahr</span></label></li>
+              <li><label class="option-label alert-option"><input type="radio" name="q4" value="5" onchange="onAnswer('q4',this)"><div class="option-radio-visual"></div><span class="option-text">Ja, Diagnose vor dem 60. Lebensjahr</span></label></li>
+              <li><label class="option-label alert-option"><input type="radio" name="q4" value="6" onchange="onAnswer('q4',this)"><div class="option-radio-visual"></div><span class="option-text">Ja, zwei oder mehr Verwandte 1. Grades betroffen</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q4" value="1" onchange="onAnswer('q4',this)"><div class="option-radio-visual"></div><span class="option-text">Ich weiß es nicht</span></label></li>
+            </ul>
+          </div>
+
+          <div class="question-card" id="qc-q5">
+            <div class="question-text">Gab es in Ihrer Familie Darmkrebs oder Darmpolypen bei Großeltern, Onkel, Tante oder Cousin (Verwandte 2. Grades)?</div>
+            <ul class="options-list">
+              <li><label class="option-label"><input type="radio" name="q5" value="0" onchange="onAnswer('q5',this)"><div class="option-radio-visual"></div><span class="option-text">Nein</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q5" value="1" onchange="onAnswer('q5',this)"><div class="option-radio-visual"></div><span class="option-text">Ja, ein Verwandter 2. Grades</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q5" value="2" onchange="onAnswer('q5',this)"><div class="option-radio-visual"></div><span class="option-text">Ja, mehrere Verwandte 2. Grades</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q5" value="0" onchange="onAnswer('q5',this)"><div class="option-radio-visual"></div><span class="option-text">Ich weiß es nicht</span></label></li>
+            </ul>
+          </div>
+
+          <div class="question-card" id="qc-q6">
+            <div class="question-text">Wurde bei Ihnen selbst oder einem Familienmitglied eine Erbkrankheit diagnostiziert, die das Darmkrebsrisiko erhöht?</div>
+            <div class="question-hint">Z.B. Lynch-Syndrom (HNPCC), FAP (familiäre adenomatöse Polyposis), MUTYH-assoziierte Polyposis</div>
+            <ul class="options-list">
+              <li><label class="option-label"><input type="radio" name="q6" value="0" onchange="onAnswer('q6',this)"><div class="option-radio-visual"></div><span class="option-text">Nein</span></label></li>
+              <li><label class="option-label alert-option"><input type="radio" name="q6" value="8" onchange="onAnswer('q6',this)"><div class="option-radio-visual"></div><span class="option-text">Ja, bei mir selbst</span></label></li>
+              <li><label class="option-label alert-option"><input type="radio" name="q6" value="6" onchange="onAnswer('q6',this)"><div class="option-radio-visual"></div><span class="option-text">Ja, bei einem Familienmitglied</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q6" value="0" onchange="onAnswer('q6',this)"><div class="option-radio-visual"></div><span class="option-text">Ich weiß es nicht / bin mir nicht sicher</span></label></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="nav-row">
+          <button class="btn-secondary" onclick="goTo('screen-1')">← Zurück</button>
+          <button class="btn-primary" onclick="goTo('screen-3')">
+            Weiter
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- SCREEN 3: Vorerkrankungen -->
+      <div class="screen" id="screen-3">
+        <div class="steps-nav" id="steps-nav-3"></div>
+        <div class="progress-section">
+          <div class="progress-meta">
+            <span class="progress-label">Fortschritt</span>
+            <span class="progress-count">Abschnitt 3 von 5</span>
+          </div>
+          <div class="progress-bar-track"><div class="progress-bar-fill" style="width:44%"></div></div>
+        </div>
+
+        <div class="section-group">
+          <div class="section-header">
+            <div class="section-icon orange">🏥</div>
+            <div>
+              <div class="section-title">Vorerkrankungen</div>
+              <div class="section-subtitle">Bestimmte Erkrankungen erhöhen das CRC-Risiko messbar</div>
+            </div>
+          </div>
+
+          <div class="question-card" id="qc-q7">
+            <div class="question-text">Haben Sie eine chronisch-entzündliche Darmerkrankung (CED)?</div>
+            <div class="question-hint">Morbus Crohn (im Kolonbefall) oder Colitis ulcerosa</div>
+            <ul class="options-list">
+              <li><label class="option-label"><input type="radio" name="q7" value="0" onchange="onAnswer('q7',this)"><div class="option-radio-visual"></div><span class="option-text">Nein</span></label></li>
+              <li><label class="option-label alert-option"><input type="radio" name="q7" value="4" onchange="onAnswer('q7',this)"><div class="option-radio-visual"></div><span class="option-text">Ja, Colitis ulcerosa (Erkrankungsdauer &lt; 8 Jahre)</span></label></li>
+              <li><label class="option-label alert-option"><input type="radio" name="q7" value="6" onchange="onAnswer('q7',this)"><div class="option-radio-visual"></div><span class="option-text">Ja, Colitis ulcerosa (Erkrankungsdauer ≥ 8 Jahre)</span></label></li>
+              <li><label class="option-label alert-option"><input type="radio" name="q7" value="4" onchange="onAnswer('q7',this)"><div class="option-radio-visual"></div><span class="option-text">Ja, Morbus Crohn mit Kolonbefall</span></label></li>
+            </ul>
+          </div>
+
+          <div class="question-card" id="qc-q8">
+            <div class="question-text">Wurden bei Ihnen jemals Darmpolypen (Adenome) festgestellt?</div>
+            <ul class="options-list">
+              <li><label class="option-label"><input type="radio" name="q8" value="0" onchange="onAnswer('q8',this)"><div class="option-radio-visual"></div><span class="option-text">Nein, nie</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q8" value="2" onchange="onAnswer('q8',this)"><div class="option-radio-visual"></div><span class="option-text">Ja, ein oder zwei kleine Adenome (&lt; 10 mm)</span></label></li>
+              <li><label class="option-label alert-option"><input type="radio" name="q8" value="5" onchange="onAnswer('q8',this)"><div class="option-radio-visual"></div><span class="option-text">Ja, drei oder mehr Adenome oder ein Adenom ≥ 10 mm</span></label></li>
+              <li><label class="option-label alert-option"><input type="radio" name="q8" value="7" onchange="onAnswer('q8',this)"><div class="option-radio-visual"></div><span class="option-text">Ja, fortgeschrittene Adenome oder villöse Histologie</span></label></li>
+            </ul>
+          </div>
+
+          <div class="question-card" id="qc-q9">
+            <div class="question-text">Leiden oder litten Sie an Diabetes mellitus Typ 2?</div>
+            <ul class="options-list">
+              <li><label class="option-label"><input type="radio" name="q9" value="0" onchange="onAnswer('q9',this)"><div class="option-radio-visual"></div><span class="option-text">Nein</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q9" value="2" onchange="onAnswer('q9',this)"><div class="option-radio-visual"></div><span class="option-text">Ja, gut eingestellt</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q9" value="2" onchange="onAnswer('q9',this)"><div class="option-radio-visual"></div><span class="option-text">Ja, schlecht eingestellt oder mit Komplikationen</span></label></li>
+            </ul>
+          </div>
+
+          <div class="question-card" id="qc-q10">
+            <div class="question-text">Haben oder hatten Sie eine andere Krebserkrankung?</div>
+            <div class="question-hint">Z.B. Endometriumkarzinom, Ovarialkarzinom, Magenkarzinom – können auf ein Lynch-Syndrom hinweisen</div>
+            <ul class="options-list">
+              <li><label class="option-label"><input type="radio" name="q10" value="0" onchange="onAnswer('q10',this)"><div class="option-radio-visual"></div><span class="option-text">Nein</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q10" value="3" onchange="onAnswer('q10',this)"><div class="option-radio-visual"></div><span class="option-text">Ja, Endometrium-, Ovarial- oder Magenkarzinom</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q10" value="2" onchange="onAnswer('q10',this)"><div class="option-radio-visual"></div><span class="option-text">Ja, andere Krebserkrankung</span></label></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="nav-row">
+          <button class="btn-secondary" onclick="goTo('screen-2')">← Zurück</button>
+          <button class="btn-primary" onclick="goTo('screen-4')">
+            Weiter
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- SCREEN 4: Lebensstil -->
+      <div class="screen" id="screen-4">
+        <div class="steps-nav" id="steps-nav-4"></div>
+        <div class="progress-section">
+          <div class="progress-meta">
+            <span class="progress-label">Fortschritt</span>
+            <span class="progress-count">Abschnitt 4 von 5</span>
+          </div>
+          <div class="progress-bar-track"><div class="progress-bar-fill" style="width:66%"></div></div>
+        </div>
+
+        <div class="section-group">
+          <div class="section-header">
+            <div class="section-icon green">🥗</div>
+            <div>
+              <div class="section-title">Lebensstil & Ernährung</div>
+              <div class="section-subtitle">Modifizierbare Risikofaktoren – hier können Sie aktiv etwas verändern</div>
+            </div>
+          </div>
+
+          <div class="question-card" id="qc-q11">
+            <div class="question-text">Wie häufig essen Sie rotes oder verarbeitetes Fleisch (Rind, Schwein, Wurst, Speck, Salami)?</div>
+            <ul class="options-list">
+              <li><label class="option-label"><input type="radio" name="q11" value="0" onchange="onAnswer('q11',this)"><div class="option-radio-visual"></div><span class="option-text">Selten oder nie (&lt; 1× pro Woche)</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q11" value="1" onchange="onAnswer('q11',this)"><div class="option-radio-visual"></div><span class="option-text">1 – 2× pro Woche</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q11" value="2" onchange="onAnswer('q11',this)"><div class="option-radio-visual"></div><span class="option-text">3 – 5× pro Woche</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q11" value="3" onchange="onAnswer('q11',this)"><div class="option-radio-visual"></div><span class="option-text">Täglich oder fast täglich</span></label></li>
+            </ul>
+          </div>
+
+          <div class="question-card" id="qc-q12">
+            <div class="question-text">Wie häufig konsumieren Sie stark verarbeitete Lebensmittel (Ultra-processed Food)?</div>
+            <div class="question-hint">Z.B. Fast Food, Fertiggerichte, Süßigkeiten, Softdrinks, Chips, Weißbrot-Produkte, Frühstücksflocken mit Zucker</div>
+            <ul class="options-list">
+              <li><label class="option-label"><input type="radio" name="q12" value="0" onchange="onAnswer('q12',this)"><div class="option-radio-visual"></div><span class="option-text">Selten oder nie</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q12" value="1" onchange="onAnswer('q12',this)"><div class="option-radio-visual"></div><span class="option-text">Gelegentlich (wenige Mal pro Woche)</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q12" value="2" onchange="onAnswer('q12',this)"><div class="option-radio-visual"></div><span class="option-text">Häufig (täglich)</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q12" value="2" onchange="onAnswer('q12',this)"><div class="option-radio-visual"></div><span class="option-text">Sehr häufig (mehrmals täglich)</span></label></li>
+            </ul>
+          </div>
+
+          <div class="question-card" id="qc-q13">
+            <div class="question-text">Wie viel körperliche Aktivität üben Sie pro Woche aus?</div>
+            <div class="question-hint">Z.B. Joggen, Radfahren, Schwimmen, Krafttraining, zügiges Gehen (mindestens 30 min am Stück)</div>
+            <ul class="options-list">
+              <li><label class="option-label"><input type="radio" name="q13" value="2" onchange="onAnswer('q13',this)"><div class="option-radio-visual"></div><span class="option-text">Kaum oder gar nicht (sitzende Lebensweise)</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q13" value="1" onchange="onAnswer('q13',this)"><div class="option-radio-visual"></div><span class="option-text">1 – 2× pro Woche, &lt; 30 Minuten</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q13" value="0" onchange="onAnswer('q13',this)"><div class="option-radio-visual"></div><span class="option-text">2 – 3× pro Woche, 30 – 60 Minuten</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q13" value="-1" onchange="onAnswer('q13',this)"><div class="option-radio-visual"></div><span class="option-text">≥ 4× pro Woche, &gt; 60 Minuten (regelmäßig aktiv)</span></label></li>
+            </ul>
+          </div>
+
+          <div class="question-card" id="qc-q14">
+            <div class="question-text">Wie hoch ist Ihr Body-Mass-Index (BMI)?</div>
+            <div class="question-hint">BMI = Körpergewicht (kg) ÷ Körpergröße² (m²). Beispiel: 80 kg ÷ 1,75² = 26,1</div>
+            <ul class="options-list">
+              <li><label class="option-label"><input type="radio" name="q14" value="0" onchange="onAnswer('q14',this)"><div class="option-radio-visual"></div><span class="option-text">Unter 25 (Normalgewicht)</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q14" value="1" onchange="onAnswer('q14',this)"><div class="option-radio-visual"></div><span class="option-text">25 – 29,9 (Übergewicht)</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q14" value="2" onchange="onAnswer('q14',this)"><div class="option-radio-visual"></div><span class="option-text">30 – 34,9 (Adipositas Grad I)</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q14" value="3" onchange="onAnswer('q14',this)"><div class="option-radio-visual"></div><span class="option-text">35 oder höher (Adipositas Grad II–III)</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q14" value="0" onchange="onAnswer('q14',this)"><div class="option-radio-visual"></div><span class="option-text">Ich weiß es nicht</span></label></li>
+            </ul>
+          </div>
+
+          <div class="question-card" id="qc-q15">
+            <div class="question-text">Rauchen Sie oder haben Sie geraucht?</div>
+            <ul class="options-list">
+              <li><label class="option-label"><input type="radio" name="q15" value="0" onchange="onAnswer('q15',this)"><div class="option-radio-visual"></div><span class="option-text">Nein, nie geraucht</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q15" value="1" onchange="onAnswer('q15',this)"><div class="option-radio-visual"></div><span class="option-text">Ex-Raucher (aufgehört vor &gt; 10 Jahren)</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q15" value="2" onchange="onAnswer('q15',this)"><div class="option-radio-visual"></div><span class="option-text">Ex-Raucher (aufgehört vor &lt; 10 Jahren)</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q15" value="3" onchange="onAnswer('q15',this)"><div class="option-radio-visual"></div><span class="option-text">Aktuell Raucher (&lt; 20 Zigaretten/Tag)</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q15" value="3" onchange="onAnswer('q15',this)"><div class="option-radio-visual"></div><span class="option-text">Aktuell Raucher (≥ 20 Zigaretten/Tag)</span></label></li>
+            </ul>
+          </div>
+
+          <div class="question-card" id="qc-q16">
+            <div class="question-text">Wie viel Alkohol trinken Sie durchschnittlich?</div>
+            <ul class="options-list">
+              <li><label class="option-label"><input type="radio" name="q16" value="0" onchange="onAnswer('q16',this)"><div class="option-radio-visual"></div><span class="option-text">Keinen oder sehr wenig (&lt; 1 Glas/Woche)</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q16" value="1" onchange="onAnswer('q16',this)"><div class="option-radio-visual"></div><span class="option-text">Moderat (1 – 6 Gläser/Woche)</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q16" value="2" onchange="onAnswer('q16',this)"><div class="option-radio-visual"></div><span class="option-text">Regelmäßig (1 Glas täglich)</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q16" value="3" onchange="onAnswer('q16',this)"><div class="option-radio-visual"></div><span class="option-text">Erhöht (mehr als 2 Gläser täglich)</span></label></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="nav-row">
+          <button class="btn-secondary" onclick="goTo('screen-3')">← Zurück</button>
+          <button class="btn-primary" onclick="goTo('screen-5')">
+            Weiter
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- SCREEN 5: Symptome / Alarmzeichen -->
+      <div class="screen" id="screen-5">
+        <div class="steps-nav" id="steps-nav-5"></div>
+        <div class="progress-section">
+          <div class="progress-meta">
+            <span class="progress-label">Fortschritt</span>
+            <span class="progress-count">Abschnitt 5 von 5 – Fast geschafft!</span>
+          </div>
+          <div class="progress-bar-track"><div class="progress-bar-fill" style="width:88%"></div></div>
+        </div>
+
+        <div class="section-group">
+          <div class="section-header">
+            <div class="section-icon red">🚨</div>
+            <div>
+              <div class="section-title">Symptome & Alarmzeichen</div>
+              <div class="section-subtitle">Bei diesen Beschwerden bitte sofort zum Arzt – unabhängig vom Gesamtergebnis</div>
+            </div>
+          </div>
+
+          <div class="question-card" id="qc-q17">
+            <div class="question-text">Haben Sie in den letzten 3 Monaten Blut im oder am Stuhl bemerkt?</div>
+            <div class="question-hint">Rektale Blutung – bitte nicht als „nur Hämorrhoiden" abtun, ohne ärztliche Abklärung</div>
+            <ul class="options-list">
+              <li><label class="option-label"><input type="radio" name="q17" value="0" onchange="onAnswer('q17',this)"><div class="option-radio-visual"></div><span class="option-text">Nein</span></label></li>
+              <li><label class="option-label alert-option"><input type="radio" name="q17" value="6" onchange="onAnswer('q17',this)"><div class="option-radio-visual"></div><span class="option-text" data-alarm="true">Ja, einmal oder gelegentlich</span></label></li>
+              <li><label class="option-label alert-option"><input type="radio" name="q17" value="8" onchange="onAnswer('q17',this)"><div class="option-radio-visual"></div><span class="option-text" data-alarm="true">Ja, mehrfach oder anhaltend</span></label></li>
+            </ul>
+          </div>
+
+          <div class="question-card" id="qc-q18">
+            <div class="question-text">Haben Sie ungewollt Gewicht verloren (mehr als 5 kg in 6 Monaten, ohne Diät)?</div>
+            <ul class="options-list">
+              <li><label class="option-label"><input type="radio" name="q18" value="0" onchange="onAnswer('q18',this)"><div class="option-radio-visual"></div><span class="option-text">Nein</span></label></li>
+              <li><label class="option-label alert-option"><input type="radio" name="q18" value="5" onchange="onAnswer('q18',this)"><div class="option-radio-visual"></div><span class="option-text" data-alarm="true">Ja</span></label></li>
+            </ul>
+          </div>
+
+          <div class="question-card" id="qc-q19">
+            <div class="question-text">Haben Sie eine anhaltende Veränderung Ihrer Stuhlgewohnheiten bemerkt (länger als 4 Wochen)?</div>
+            <div class="question-hint">Z.B. neu aufgetretene Verstopfung, Durchfall, Wechsel zwischen beiden, Bleistiftstuhl (dünner Stuhl)</div>
+            <ul class="options-list">
+              <li><label class="option-label"><input type="radio" name="q19" value="0" onchange="onAnswer('q19',this)"><div class="option-radio-visual"></div><span class="option-text">Nein</span></label></li>
+              <li><label class="option-label alert-option"><input type="radio" name="q19" value="4" onchange="onAnswer('q19',this)"><div class="option-radio-visual"></div><span class="option-text" data-alarm="true">Ja, gelegentlich</span></label></li>
+              <li><label class="option-label alert-option"><input type="radio" name="q19" value="5" onchange="onAnswer('q19',this)"><div class="option-radio-visual"></div><span class="option-text" data-alarm="true">Ja, anhaltend (&gt; 4 Wochen)</span></label></li>
+            </ul>
+          </div>
+
+          <div class="question-card" id="qc-q20">
+            <div class="question-text">Leiden Sie unter anhaltender unerklärlicher Müdigkeit oder wurde bei Ihnen eine Blutarmut (Anämie) festgestellt?</div>
+            <ul class="options-list">
+              <li><label class="option-label"><input type="radio" name="q20" value="0" onchange="onAnswer('q20',this)"><div class="option-radio-visual"></div><span class="option-text">Nein</span></label></li>
+              <li><label class="option-label"><input type="radio" name="q20" value="2" onchange="onAnswer('q20',this)"><div class="option-radio-visual"></div><span class="option-text">Müdigkeit, keine Anämie bekannt</span></label></li>
+              <li><label class="option-label alert-option"><input type="radio" name="q20" value="4" onchange="onAnswer('q20',this)"><div class="option-radio-visual"></div><span class="option-text" data-alarm="true">Ja, Blutarmut (Anämie) ohne klare Ursache</span></label></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="nav-row">
+          <button class="btn-secondary" onclick="goTo('screen-4')">← Zurück</button>
+          <button class="btn-primary" onclick="calculateResult()" style="background: var(--color-green); border-color: var(--color-green);">
+            Mein Ergebnis anzeigen
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- SCREEN 6: Ergebnis -->
+      <div class="screen" id="screen-result">
+        <div id="result-content"></div>
+        <div class="result-actions">
+          <button class="btn-restart" onclick="restartSurvey()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.37"/></svg>
+            Neu starten
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ─── Footer ─────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-inner">
+      <span>Klinik für Gastroenterologie · Klinikum Neumarkt i.d.OPf. · <a href="tel:+4991814200">09181 420-0</a></span>
+      <span>Dieser Test ersetzt keine ärztliche Untersuchung und ist kein validiertes Diagnoseinstrument. Bei Beschwerden bitte immer medizinische Hilfe in Anspruch nehmen.</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  /* ─── Theme Toggle ─────────────────────────────────────── */
+  (function(){
+    const t = document.querySelector('[data-theme-toggle]');
+    const r = document.documentElement;
+    let d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+    r.setAttribute('data-theme', d);
+    function setIcon() {
+      if (!t) return;
+      t.innerHTML = d === 'dark'
+        ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+        : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+      t.setAttribute('aria-label', 'Zum ' + (d === 'dark' ? 'hellen' : 'dunklen') + ' Modus wechseln');
+    }
+    setIcon();
+    t && t.addEventListener('click', () => {
+      d = d === 'dark' ? 'light' : 'dark';
+      r.setAttribute('data-theme', d);
+      setIcon();
+    });
+  })();
+
+  /* ─── State ────────────────────────────────────────────── */
+  const answers = {};
+  const alarmQuestions = new Set();
+  const TOTAL_STEPS = 5;
+
+  /* ─── Steps Nav Builder ────────────────────────────────── */
+  function buildStepsNav(currentStep) {
+    const labels = ['Demografie', 'Familie', 'Erkrankungen', 'Lebensstil', 'Symptome'];
+    for (let i = 1; i <= TOTAL_STEPS; i++) {
+      const nav = document.getElementById('steps-nav-' + i);
+      if (!nav) continue;
+      nav.innerHTML = '';
+      for (let j = 1; j <= TOTAL_STEPS; j++) {
+        const dot = document.createElement('div');
+        dot.className = 'step-dot' + (j === i ? ' active' : (j < i ? ' done' : ''));
+        dot.title = labels[j-1];
+        dot.textContent = j < i ? '✓' : j;
+        nav.appendChild(dot);
+        if (j < TOTAL_STEPS) {
+          const line = document.createElement('div');
+          line.className = 'step-line' + (j < i ? ' done' : '');
+          nav.appendChild(line);
+        }
+      }
+    }
+  }
+  buildStepsNav();
+
+  /* ─── Navigation ────────────────────────────────────────── */
+  function goTo(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function startSurvey() {
+    goTo('screen-1');
+  }
+
+  function restartSurvey() {
+    Object.keys(answers).forEach(k => delete answers[k]);
+    alarmQuestions.clear();
+    document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+    document.querySelectorAll('.question-card').forEach(c => c.classList.remove('has-answer'));
+    goTo('screen-intro');
+  }
+
+  /* ─── Answer Handler ────────────────────────────────────── */
+  function onAnswer(qname, input) {
+    answers[qname] = parseInt(input.value);
+    const card = document.getElementById('qc-' + qname);
+    if (card) card.classList.add('has-answer');
+    // Check alarm
+    const selectedText = input.parentElement.querySelector('[data-alarm]');
+    if (selectedText) {
+      alarmQuestions.add(qname);
+    } else {
+      alarmQuestions.delete(qname);
+    }
+  }
+
+  /* ─── Score Calculation ─────────────────────────────────── */
+  function calculateResult() {
+    // Sum up all answered questions
+    let score = 0;
+    Object.values(answers).forEach(v => { score += v; });
+    // Minimum 0
+    score = Math.max(0, score);
+
+    // Max possible score (for bar width)
+    // Approximate max: ~60+ points
+    const MAX_SCORE = 55;
+    const barWidth = Math.min(100, Math.round((score / MAX_SCORE) * 100));
+
+    const hasAlarm = alarmQuestions.size > 0;
+
+    // Determine category
+    let category, color, emoji, description, recs;
+
+    if (hasAlarm || score >= 28) {
+      // ROT
+      category = 'Hohes Risiko';
+      color = 'red';
+      emoji = '🔴';
+      description = 'Ihr Ergebnis deutet auf ein <strong>deutlich erhöhtes Darmkrebsrisiko</strong> hin. Die Kombination Ihrer Antworten – möglicherweise Symptome, familiäre Vorbelastung oder mehrere Risikofaktoren – erfordert eine zeitnahe fachärztliche Abklärung. Darmkrebs ist bei früher Diagnose in über 90 % der Fälle heilbar.';
+      recs = [
+        { icon: 'alert', text: '<strong>Jetzt Termin vereinbaren:</strong> Bitte stellen Sie sich zeitnah bei Ihrem Hausarzt oder direkt in unserer gastroenterologischen Ambulanz vor.' },
+        { icon: 'action', text: '<strong>Koloskopie empfohlen:</strong> Eine Darmspiegelung ist die zuverlässigste Methode zur Früherkennung und sollte zeitnah erfolgen.' },
+        { icon: 'action', text: '<strong>Symptome nicht ignorieren:</strong> Blut im Stuhl, anhaltende Beschwerden oder Gewichtsverlust müssen immer ärztlich abgeklärt werden.' },
+        { icon: 'info', text: '<strong>Genetische Beratung:</strong> Bei starker familiärer Häufung kann eine genetische Beratung sinnvoll sein.' },
+      ];
+    } else if (score >= 16) {
+      // ORANGE
+      category = 'Erhöhtes Risiko';
+      color = 'orange';
+      emoji = '🟠';
+      description = 'Ihr Ergebnis zeigt ein <strong>erhöhtes Darmkrebsrisiko</strong>. Mehrere Risikofaktoren haben sich summiert. Eine Darmspiegelung wird dringend empfohlen – sie kann Leben retten, da Polypen vor der Krebsentstehung entfernt werden können.';
+      recs = [
+        { icon: 'action', text: '<strong>Darmspiegelung (Koloskopie) empfohlen:</strong> Bitte sprechen Sie Ihren Hausarzt oder einen Gastroenterologen darauf an – idealerweise in den nächsten 3–6 Monaten.' },
+        { icon: 'action', text: '<strong>Vorsorge beim Hausarzt:</strong> Wenn noch nicht erfolgt: Stuhltest auf okkultes Blut (iFOBT) und Beratung zu Ihrem individuellen Vorsorgeplan.' },
+        { icon: 'info', text: '<strong>Lebensstil überdenken:</strong> Weniger rotes/verarbeitetes Fleisch, mehr Ballaststoffe, Verzicht auf Alkohol und Rauchen können das Risiko senken.' },
+        { icon: 'info', text: '<strong>Regelmäßige Kontrolle:</strong> Lassen Sie Ihr Risiko in 1–2 Jahren erneut überprüfen.' },
+      ];
+    } else if (score >= 8) {
+      // GELB
+      category = 'Leicht erhöhtes Risiko';
+      color = 'yellow';
+      emoji = '🟡';
+      description = 'Ihr Ergebnis zeigt ein <strong>leicht erhöhtes Risiko</strong> gegenüber der Durchschnittsbevölkerung. Das ist kein Grund zur Panik – aber ein guter Anlass, Vorsorge aktiv zu betreiben und Ihren Lebensstil zu überdenken.';
+      recs = [
+        { icon: 'action', text: '<strong>Darmspiegelung (Koloskopie):</strong> Ab 50 Jahren gesetzlich empfohlen – bei Risikofaktoren auch früher möglich. Sprechen Sie Ihren Arzt an.' },
+        { icon: 'action', text: '<strong>Stuhltest (iFOBT):</strong> Ab 50 Jahren jährlich als einfache Vorsorgemaßnahme – kostenlos über Ihre Krankenkasse.' },
+        { icon: 'info', text: '<strong>Lebensstil verbessern:</strong> Mehr Bewegung, ballaststoffreiche Ernährung, weniger Alkohol und Rauchen senken Ihr Risiko messbar.' },
+        { icon: 'info', text: '<strong>Diesen Test wiederholen:</strong> In 1–2 Jahren, um Veränderungen zu erkennen.' },
+      ];
+    } else {
+      // GRÜN
+      category = 'Niedriges Risiko';
+      color = 'green';
+      emoji = '🟢';
+      description = 'Ihr Ergebnis zeigt ein <strong>vergleichsweise niedriges Darmkrebsrisiko</strong>. Das ist eine gute Nachricht – bedeutet aber nicht, dass Sie keine Vorsorge benötigen. Regelmäßige Checks sind für alle empfohlen.';
+      recs = [
+        { icon: 'action', text: '<strong>Vorsorgekoloskopie ab 50:</strong> Nutzen Sie die gesetzliche Darmspiegelung ab 50 Jahren – auch ohne Beschwerden.' },
+        { icon: 'info', text: '<strong>Stuhltest (iFOBT):</strong> Jährlich ab 50, kostenlos über Ihre Krankenkasse – einfach und zuverlässig.' },
+        { icon: 'info', text: '<strong>Lebensstil beibehalten:</strong> Regelmäßige Bewegung, mediterrane Ernährung und kein Rauchen halten Ihr Risiko niedrig.' },
+        { icon: 'info', text: '<strong>Familiäre Veränderungen beachten:</strong> Falls eine Erkrankung in der Familie neu aufgetreten ist, Ihren Arzt informieren.' },
+      ];
+    }
+
+    // Build alarm banner
+    const alarmHTML = hasAlarm ? `
+      <div class="alarm-banner visible">
+        <div class="alarm-icon">🚨</div>
+        <div class="alarm-text">
+          <strong>Wichtig: Symptome bitte zeitnah abklären!</strong>
+          <p>Sie haben Beschwerden angegeben (z.B. Blut im Stuhl, Gewichtsverlust oder veränderte Stuhlgewohnheiten), die immer ärztlich abgeklärt werden müssen – unabhängig von Ihrem Gesamtergebnis. Bitte stellen Sie sich bald bei Ihrem Arzt vor.</p>
+        </div>
+      </div>
+    ` : '';
+
+    const recsHTML = recs.map(r => `
+      <li>
+        <div class="rec-icon ${r.icon}">${r.icon === 'alert' ? '!' : r.icon === 'action' ? '→' : 'i'}</div>
+        <span>${r.text}</span>
+      </li>
+    `).join('');
+
+    const contactHtml = `
+      <div class="recommendation-box" style="border-left: 3px solid var(--color-primary); margin-top: var(--space-4);">
+        <div class="recommendation-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.17 3.4 2 2 0 0 1 3.15 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16h1.92z"/></svg>
+          Termin vereinbaren
+        </div>
+        <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-3); max-width: none;">Klinik für Gastroenterologie · Klinikum Neumarkt i.d.OPf.</p>
+        <a href="tel:+4991814200" class="btn-primary" style="display: inline-flex; text-decoration: none;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.17 3.4 2 2 0 0 1 3.15 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16h1.92z"/></svg>
+          09181 420-0 anrufen
+        </a>
+      </div>
+    `;
+
+    document.getElementById('result-content').innerHTML = `
+      ${alarmHTML}
+      <div class="result-card ${color}">
+        <div class="result-icon-row">
+          <div class="result-ampel">${emoji}</div>
+          <div>
+            <div class="result-category">${category}</div>
+            <div class="result-score-line">Ihr Score: ${score} Punkte</div>
+          </div>
+        </div>
+        <div class="score-bar-section">
+          <div class="score-bar-track">
+            <div class="score-bar-fill" id="score-bar-fill" style="width:0%"></div>
+          </div>
+          <div class="score-bar-labels">
+            <span>🟢 Niedrig</span>
+            <span>🟡 Leicht erhöht</span>
+            <span>🟠 Erhöht</span>
+            <span>🔴 Hoch</span>
+          </div>
+        </div>
+        <p class="result-description">${description}</p>
+        <div class="disclaimer">
+          Dieser Fragebogen ist ein evidenzbasiertes Orientierungsinstrument, kein validiertes medizinisches Diagnosewerkzeug. Er ersetzt keine ärztliche Untersuchung. Bei Unsicherheiten oder Symptomen immer ärztlichen Rat einholen.
+        </div>
+      </div>
+
+      <div class="recommendation-box">
+        <div class="recommendation-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Ihre persönlichen Empfehlungen
+        </div>
+        <ul class="recommendation-list">${recsHTML}</ul>
+      </div>
+
+      ${color === 'red' || color === 'orange' ? contactHtml : ''}
+    `;
+
+    goTo('screen-result');
+
+    // Animate bar after a small delay
+    setTimeout(() => {
+      const bar = document.getElementById('score-bar-fill');
+      if (bar) bar.style.width = barWidth + '%';
+    }, 300);
+  }
+</script>
+</body>
+</html>
